@@ -9,7 +9,7 @@
     android:backgroundTint="@color/bg_azul_item">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/img_menu"
         android:layout_width="347dp"
         android:layout_height="393dp"
         android:layout_marginStart="10dp"
@@ -27,13 +27,14 @@
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_titulo_menu"
         android:layout_width="119dp"
         android:layout_height="34dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.807"
+        app:layout_constraintStart_toEndOf="@+id/img_menu"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.498" />
 </androidx.constraintlayout.widget.ConstraintLayout>

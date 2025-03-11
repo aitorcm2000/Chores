@@ -1,6 +1,8 @@
 package com.aitor.chores
 
-data class DatosMenuItem (
-    val Titulo : String,
+import java.sql.Blob
 
+data class DatosMenuItem (
+    val Titulo : String
+    //val Imagen : Blob
 )

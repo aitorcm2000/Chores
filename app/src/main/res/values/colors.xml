@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="bg_azul_osc">#004aad</color>
+    <color name="bg_azul_claro">#5de0e6</color>
+    <integer name="grad_angle">0</integer>
+    <color name="bg_azul_item">#7ec4ed</color>
 </resources>

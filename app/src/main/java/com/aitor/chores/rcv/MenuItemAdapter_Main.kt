@@ -1,4 +1,4 @@
-package com.aitor.chores
+package com.aitor.chores.rcv
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,13 +6,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.aitor.chores.R
 
 class MenuItemAdapter_Main  (private val datos: List<DatosMenuItem>):
     RecyclerView.Adapter<MenuItemAdapter_Main.ViewHolder?>() {
 
     class ViewHolder(v: View):RecyclerView.ViewHolder(v){
         val titulo : TextView = v.findViewById(R.id.tv_titulo_menu)
-        //val img : ImageView = v.findViewById(R.id.img_menu)
+        val img : ImageView = v.findViewById(R.id.img_menu)
     }
 
     //Por cada elemento nuevo deberia cambiar entre derecha e izquierda
@@ -23,13 +24,14 @@ class MenuItemAdapter_Main  (private val datos: List<DatosMenuItem>):
         return viewHolder
     }
 
-    override fun onBindViewHolder(holder: MenuItemAdapter_Main.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val titulo = datos[position].Titulo
-        //val img = datos[position].Imagen
         holder.titulo.text = titulo
+        holder.img.setImageResource(R.drawable.yayah)
     }
 
     override fun getItemCount(): Int {
         return datos.size
     }
+
 }

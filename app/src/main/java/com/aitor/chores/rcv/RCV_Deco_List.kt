@@ -1,4 +1,4 @@
-package com.aitor.chores
+package com.aitor.chores.rcv
 
 import android.graphics.Rect
 import android.view.View
@@ -12,6 +12,7 @@ class RCV_Deco_List (private val espacio : Int) : RecyclerView.ItemDecoration() 
         parent: RecyclerView,
         state: RecyclerView.State
     ) {
+        //Ajustes para padding del RecyclerView
         with(outRect){
             if(parent.getChildAdapterPosition(view) == 0){
                 top = espacio

@@ -3,8 +3,10 @@ package com.aitor.chores
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -44,6 +46,11 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun init_Toolbar(){
+        val toolbar : Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        //toolbar.inflateMenu(R.menu)
+    }
 
 
 }

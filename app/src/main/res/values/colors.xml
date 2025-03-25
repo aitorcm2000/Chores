@@ -6,4 +6,5 @@
     <color name="bg_azul_claro">#5de0e6</color>
     <integer name="grad_angle">0</integer>
     <color name="bg_azul_item">#7ec4ed</color>
+    <color name="toolbar_color">#4874ff</color>
 </resources>

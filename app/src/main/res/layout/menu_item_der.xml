@@ -2,11 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/MenuItem"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:alpha="1"
     android:background="@drawable/plantilla_frame"
-    android:backgroundTint="@color/bg_azul_item">
+    android:backgroundTint="@color/bg_azul_item"
+    android:onClick="setMenuOnClick">
+
 
     <ImageView
         android:id="@+id/img_menu"

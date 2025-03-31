@@ -2,6 +2,8 @@ package com.aitor.chores
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.View
 import android.widget.Button
 
 import androidx.activity.enableEdgeToEdge
@@ -37,19 +39,38 @@ class MainActivity : AppCompatActivity() {
         val rcv1_adapter = MenuItemAdapter_Main(datos)
         rcv.adapter = rcv1_adapter
 
-        var boton = findViewById<Button>(R.id.button1)
+        init_Toolbar()
 
-        boton.setOnClickListener(){
-            val intent = Intent(this,TareasActivity::class.java)
-            startActivity(intent)
-        }
+//        var boton = findViewById<Button>(R.id.button1)
+//
+//        boton.setOnClickListener(){
+//            val intent = Intent(this,TareasActivity::class.java)
+//            startActivity(intent)
+//        }
 
     }
 
     fun init_Toolbar(){
         val toolbar : Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-        //toolbar.inflateMenu(R.menu)
+        toolbar.inflateMenu(R.menu.menu1)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu1,menu)
+        return true
+    }
+
+    fun setMenuOnClick(view: View) {
+        // Handle the click here
+        when (view.id) {
+            R.id.MenuItem -> {
+                // Do something when MenuItem is clicked
+                val intent = Intent(this, TareasActivity::class.java)
+                startActivity(intent)
+            }
+            // Add more cases for other views if needed
+        }
     }
 
 

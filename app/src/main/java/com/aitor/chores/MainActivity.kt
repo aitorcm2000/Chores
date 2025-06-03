@@ -2,6 +2,7 @@ package com.aitor.chores
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.Button
@@ -11,6 +12,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aitor.chores.rcv.DatosMenuItem
@@ -18,6 +23,8 @@ import com.aitor.chores.rcv.MenuItemAdapter_Main
 import com.aitor.chores.rcv.RCV_Deco_List
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var db : FirebaseFirestore
+
     private lateinit var rcv: RecyclerView
     private val datos : ArrayList<DatosMenuItem> = arrayListOf(
         DatosMenuItem("Menu1"),
@@ -32,6 +39,17 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        db = Firebase.firestore
+
+        db.collection("users").get().addOnSuccessListener { result ->
+            for (document in result) {
+                Log.d("Firestore", "${document.id} => ${document.data}")
+            }
+        }
+            .addOnFailureListener { exception ->
+                Log.e("Firestore", "Error al obtener documentos: ", exception)
+            }
 
         rcv = findViewById(R.id.rcv_1)
         rcv.addItemDecoration(RCV_Deco_List(20))

@@ -1,4 +1,4 @@
-package com.aitor.chores.ui.login
+package com.aitor.chores.view.login
 
 import androidx.fragment.app.viewModels
 import android.os.Bundle

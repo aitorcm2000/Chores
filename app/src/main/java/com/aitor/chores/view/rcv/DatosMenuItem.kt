@@ -1,4 +1,4 @@
-package com.aitor.chores.rcv
+package com.aitor.chores.view.rcv
 
 import android.media.Image
 import android.widget.ImageView

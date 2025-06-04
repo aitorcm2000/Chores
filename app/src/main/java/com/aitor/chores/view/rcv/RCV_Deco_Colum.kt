@@ -1,4 +1,4 @@
-package com.aitor.chores.rcv
+package com.aitor.chores.view.rcv
 
 import android.graphics.Rect
 import android.view.View

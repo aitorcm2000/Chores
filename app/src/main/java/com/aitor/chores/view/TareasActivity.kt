@@ -1,4 +1,4 @@
-package com.aitor.chores
+package com.aitor.chores.view
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -6,12 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.aitor.chores.rcv.DatosMenuItem
-import com.aitor.chores.rcv.MenuItemAdapter_Main
-import com.aitor.chores.rcv.MenuItemAdapter_Mini
-import com.aitor.chores.rcv.RCV_Deco_Colum
+import com.aitor.chores.R
+import com.aitor.chores.view.rcv.DatosMenuItem
+import com.aitor.chores.view.rcv.MenuItemAdapter_Mini
+import com.aitor.chores.view.rcv.RCV_Deco_Colum
 
 class TareasActivity : AppCompatActivity() {
     private lateinit var rcv: RecyclerView
@@ -33,7 +32,7 @@ class TareasActivity : AppCompatActivity() {
         }
 
         rcv = findViewById(R.id.rcv_2)
-        rcv.addItemDecoration(RCV_Deco_Colum(10,2))
+        rcv.addItemDecoration(RCV_Deco_Colum(10, 2))
         rcv.setLayoutManager(GridLayoutManager(this , 2))
         val rcv1_adapter = MenuItemAdapter_Mini(datos)
         rcv.adapter = rcv1_adapter

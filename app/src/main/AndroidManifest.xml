@@ -19,13 +19,13 @@
         android:theme="@style/Theme.Chores"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity2"
+            android:name=".view.MainActivity2"
             android:exported="false" />
         <activity
-            android:name=".TareasActivity"
+            android:name=".view.TareasActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

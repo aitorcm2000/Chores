@@ -1,51 +1,34 @@
 package com.aitor.chores.communication.users_groups
 
-import com.aitor.chores.model.chores.ChoresRepo
-import com.aitor.chores.model.users_groups.UserGroupChoresObject
-import com.aitor.chores.model.users_groups.UserGroupMemberObject
+import com.aitor.chores.communication.TableReferenceNames
+import com.aitor.chores.model.users_groups.UserGroupObject
 import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
-import java.util.HashMap
+import kotlin.collections.HashMap
 
-class UsersGroupQueries (val collection: CollectionReference){
+class UsersGroupQueries (db: FirebaseFirestore) {
 
-    suspend fun getGroupById (id: String){
-        val snap = collection.document(id).get().await()
+    private val usersgroupsTable : CollectionReference = db.collection(TableReferenceNames.USER_GROUP)
 
-        if (snap.exists() && snap.data != null) {
-            val id = snap.id.toString()
-            val name = snap.get(UsersGroupReferenceNames.GROUPNAME).toString()
-            val members = snap.get(UsersGroupReferenceNames.MEMBERS) as List<UserGroupMemberObject>
-            val choresCompletedResponse = snap.get(UsersGroupReferenceNames.CHORESCOMPLETED)
+    suspend fun getGroupById (id: String) : Any{
+        val snap = usersgroupsTable.document(id).get().await()
 
-            completedChores(choresCompletedResponse)
-//            val group = UserGroupObject(
-//                id,
-//                name,
-//                members,
-//
-//            )
-//            println(group)
+        return if (snap.exists() && snap.data != null) {
+            userGroupFromSnapshot(snap)
+        } else {
+            Any()
         }
     }
 
-    private fun completedChores (chores : Any?)
-//    : List<UserGroupChoresObject>
+    private fun userGroupFromSnapshot (snap : DocumentSnapshot)
+    : UserGroupObject
     {
-        val untouchedchoreslist = chores as List<HashMap<String, Any>>
-        val list = mutableListOf<UserGroupChoresObject>()
+        val name = snap.get(UsersGroupReferenceNames.GROUPNAME).toString()
+        val members = snap.get(UsersGroupReferenceNames.MEMBERS) as List<HashMap<String, String>>
+        val choresCompletedResponse = snap.get(UsersGroupReferenceNames.CHORESCOMPLETED) as List<HashMap<String, Any>>
 
-        for (item in untouchedchoreslist){
-            if(ChoresRepo.myChore.isNotEmpty()){
-                var chore = ChoresRepo.getById(item.get(UsersGroupReferenceNames.CHOREID).toString())
-            } else {
-
-            }
-
-
-            println(item.get("doneBy"))
-        }
-
-
+        return UserGroupObject(snap.id, name, members,choresCompletedResponse)
     }
 }

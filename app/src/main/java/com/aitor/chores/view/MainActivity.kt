@@ -16,12 +16,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aitor.chores.R
 import com.aitor.chores.communication.FirestoreConnection
-import com.aitor.chores.communication.InnerJoins
 import com.aitor.chores.communication.TableReferenceNames
 import com.aitor.chores.communication.chores.ChoresGroupsQueries
+import com.aitor.chores.communication.chores.ChoresPUD
+import com.aitor.chores.communication.chores.ChoresQueries
 import com.aitor.chores.communication.users.UsersQueries
 import com.aitor.chores.communication.users_groups.UsersGroupQueries
 import com.aitor.chores.model.chores.ChoreGroupObject
+import com.aitor.chores.model.chores.ChoreObject
 import com.aitor.chores.model.users.UserObject
 import com.aitor.chores.view.rcv.DatosMenuItem
 import com.aitor.chores.view.rcv.MenuItemAdapter_Main
@@ -51,56 +53,11 @@ class MainActivity : AppCompatActivity() {
 
 
         db = FirestoreConnection().startConnection()
-
-        var user : UserObject
         CoroutineScope(Dispatchers.IO).launch {
-//            UsersGroupQueries(db.collection(TableReferenceNames.USER_GROUP))
-//                .getGroupById("WR0KjtzfdutW12re8xBV")
+            ChoresPUD(db).addChore(ChoreObject("1","1","1","uno"))
 
-            user = UsersQueries(db.collection(TableReferenceNames.USERS))
-                .getUserById("eh8gTYna9rAnW64sUaR9") as UserObject
-
-            InnerJoins(db).getAllChoresForUser(user)
-
-//            val lista = ChoresGroupsQueries(db.collection(TableReferenceNames.CHORES_GROUP))
-//                .getAllChoreGroups()
-//            for (group in lista as List<ChoreGroupObject>){
-//                println(group.chores)
-//            }
-
-//
-//            for (ref in user.groups){
-//                println(ref.toString().trim())
-//                UsersGroupQueries(db.collection(TableReferenceNames.USER_GROUP))
-//                    .getGroupById(ref.toString())
-//            }
         }
 
-
-
-//        db.collection("users").get().addOnSuccessListener { result ->
-//            for (document in result) {
-//                println("${document.id} => ${document.data}")
-//                val user = UserObject(
-//                    document.data.get("username").toString(),
-//                    document.data.get("password").toString(),
-//                    document.data.get("mail").toString(),
-//                    document.data.get("groups") as List<DocumentReference>,
-//                    document.data.get("chores_completed") as List<CompletedChoreObject>)
-//
-//                println(user.groups.get(0)as DocumentReference)
-//                val ref = user.groups.get(0)as DocumentReference
-//                ref.get().addOnSuccessListener { document ->
-//                    println(document.id)
-//                    db.collection("user_group").document(document.id.trim()).get().addOnSuccessListener { document ->
-//                        println(document.data)
-//                    }
-//                }
-//            }
-//        }
-//            .addOnFailureListener { exception ->
-//                Log.e("Firestore", "Error al obtener documentos: ", exception)
-//            }
 
         rcv = findViewById(R.id.rcv_1)
         rcv.addItemDecoration(RCV_Deco_List(20))

@@ -6,4 +6,4 @@ data class UserObject (
     val password :String,
     val email :String,
     val groups :List<String>,
-    val choresCompleted :List<Any>)
+    val choresCompleted :List<HashMap<String, Any>>)

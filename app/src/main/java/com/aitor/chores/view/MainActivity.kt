@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aitor.chores.R
 import com.aitor.chores.communication.FirestoreConnection
+import com.aitor.chores.communication.InnerJoins
 import com.aitor.chores.communication.TableReferenceNames
 import com.aitor.chores.communication.chores.ChoresGroupsQueries
 import com.aitor.chores.communication.users.UsersQueries
@@ -53,13 +54,20 @@ class MainActivity : AppCompatActivity() {
 
         var user : UserObject
         CoroutineScope(Dispatchers.IO).launch {
-            val lista = ChoresGroupsQueries(db.collection(TableReferenceNames.CHORES_GROUP))
-                .getAllChoreGroups()
-            for (group in lista as List<ChoreGroupObject>){
-                println(group)
-            }
-//            user = UsersQueries(db.collection(TableReferenceNames.USERS))
-//                .getUserById("eh8gTYna9rAnW64sUaR9") as UserObject
+//            UsersGroupQueries(db.collection(TableReferenceNames.USER_GROUP))
+//                .getGroupById("WR0KjtzfdutW12re8xBV")
+
+            user = UsersQueries(db.collection(TableReferenceNames.USERS))
+                .getUserById("eh8gTYna9rAnW64sUaR9") as UserObject
+
+            InnerJoins(db).getAllChoresForUser(user)
+
+//            val lista = ChoresGroupsQueries(db.collection(TableReferenceNames.CHORES_GROUP))
+//                .getAllChoreGroups()
+//            for (group in lista as List<ChoreGroupObject>){
+//                println(group.chores)
+//            }
+
 //
 //            for (ref in user.groups){
 //                println(ref.toString().trim())

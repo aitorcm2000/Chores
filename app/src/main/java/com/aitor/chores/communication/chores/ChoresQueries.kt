@@ -10,7 +10,7 @@ import kotlinx.coroutines.tasks.await
 
 class ChoresQueries(val collection : CollectionReference){
 
-    suspend fun getUserById (id : String) : Any {
+    suspend fun getChoreById (id : String) : Any {
         val snap = collection.document(id).get().await()
 
         if (snap.exists() && snap.data != null) {
@@ -30,6 +30,8 @@ class ChoresQueries(val collection : CollectionReference){
             return Any()
         }
     }
+
+
 
 //    fun documentSnapShotToChoreObject (data : DocumentSnapshot) : ChoreObject{
 //        return ChoreObject(

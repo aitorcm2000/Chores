@@ -1,7 +1,7 @@
 package com.aitor.chores.communication.users
 
 import com.aitor.chores.communication.TableReferenceNames
-import com.aitor.chores.model.users.UserObject
+import com.aitor.chores.model.users.UserInputObject
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
@@ -23,7 +23,7 @@ class UsersQueries (db: FirebaseFirestore) {
         }
     }
 
-    private fun userFromSnapshot (snap : DocumentSnapshot) : UserObject{
+    private fun userFromSnapshot (snap : DocumentSnapshot) : UserInputObject{
 
         val username = snap.get(UsersReferenceNames.USERNAME).toString()
         val password = snap.get(UsersReferenceNames.PASSWORD).toString()
@@ -31,6 +31,6 @@ class UsersQueries (db: FirebaseFirestore) {
         val groups = snap.get(UsersReferenceNames.GROUPS) as List<String>
         val choresCompleted = snap.get(UsersReferenceNames.CHORES_COMPLETED) as List<HashMap<String, Any>>
 
-        return UserObject(snap.id,username,password,mail,groups,choresCompleted)
+        return UserInputObject(snap.id,username,password,mail,groups,choresCompleted)
     }
 }

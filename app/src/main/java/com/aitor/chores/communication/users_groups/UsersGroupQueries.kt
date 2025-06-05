@@ -1,7 +1,7 @@
 package com.aitor.chores.communication.users_groups
 
 import com.aitor.chores.communication.TableReferenceNames
-import com.aitor.chores.model.users_groups.UserGroupObject
+import com.aitor.chores.model.users_groups.UserGroupInputObject
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
@@ -23,12 +23,12 @@ class UsersGroupQueries (db: FirebaseFirestore) {
     }
 
     private fun userGroupFromSnapshot (snap : DocumentSnapshot)
-    : UserGroupObject
+    : UserGroupInputObject
     {
         val name = snap.get(UsersGroupReferenceNames.GROUPNAME).toString()
         val members = snap.get(UsersGroupReferenceNames.MEMBERS) as List<HashMap<String, String>>
         val choresCompletedResponse = snap.get(UsersGroupReferenceNames.CHORESCOMPLETED) as List<HashMap<String, Any>>
 
-        return UserGroupObject(snap.id, name, members,choresCompletedResponse)
+        return UserGroupInputObject(snap.id, name, members,choresCompletedResponse)
     }
 }

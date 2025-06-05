@@ -1,7 +1,6 @@
 package com.aitor.chores.model.users
 
-data class UserObject (
-    val id : String,
+data class UserOutputObject (
     val username :String,
     val password :String,
     val email :String,

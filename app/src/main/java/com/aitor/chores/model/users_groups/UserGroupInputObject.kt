@@ -1,6 +1,6 @@
 package com.aitor.chores.model.users_groups
 
-data class UserGroupObject (
+data class UserGroupInputObject (
     val id : String,
     val groupName : String,
     val members : List<HashMap<String, String>>,

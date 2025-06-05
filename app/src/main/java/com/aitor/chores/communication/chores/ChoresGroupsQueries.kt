@@ -1,11 +1,7 @@
 package com.aitor.chores.communication.chores
 
-import com.aitor.chores.communication.users.UsersReferenceNames
 import com.aitor.chores.model.chores.ChoreGroupObject
-import com.aitor.chores.model.users.UserObject
 import com.google.firebase.firestore.CollectionReference
-import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.DocumentSnapshot
 import kotlinx.coroutines.tasks.await
 
 class ChoresGroupsQueries(val collection : CollectionReference){

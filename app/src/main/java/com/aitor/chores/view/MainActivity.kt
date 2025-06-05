@@ -16,19 +16,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aitor.chores.R
 import com.aitor.chores.communication.FirestoreConnection
-import com.aitor.chores.communication.TableReferenceNames
-import com.aitor.chores.communication.chores.ChoresGroupsQueries
 import com.aitor.chores.communication.chores.ChoresPUD
-import com.aitor.chores.communication.chores.ChoresQueries
-import com.aitor.chores.communication.users.UsersQueries
-import com.aitor.chores.communication.users_groups.UsersGroupQueries
-import com.aitor.chores.model.chores.ChoreGroupObject
-import com.aitor.chores.model.chores.ChoreObject
-import com.aitor.chores.model.users.UserObject
+import com.aitor.chores.model.chores.ChoreInputObject
+import com.aitor.chores.model.chores.ChoreOutputObject
 import com.aitor.chores.view.rcv.DatosMenuItem
 import com.aitor.chores.view.rcv.MenuItemAdapter_Main
 import com.aitor.chores.view.rcv.RCV_Deco_List
-import com.google.firebase.firestore.DocumentSnapshot
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -54,7 +47,7 @@ class MainActivity : AppCompatActivity() {
 
         db = FirestoreConnection().startConnection()
         CoroutineScope(Dispatchers.IO).launch {
-            ChoresPUD(db).addChore(ChoreObject("1","1","1","uno"))
+//            UsersPUD(db).addChore(ChoreOutputObject("1","1","uno"))
 
         }
 

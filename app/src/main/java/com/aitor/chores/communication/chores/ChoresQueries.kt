@@ -1,9 +1,8 @@
 package com.aitor.chores.communication.chores
 
 import com.aitor.chores.communication.TableReferenceNames
-import com.aitor.chores.communication.users.UsersReferenceNames
-import com.aitor.chores.model.chores.ChoreObject
-import com.aitor.chores.model.users.UserObject
+import com.aitor.chores.model.chores.ChoreInputObject
+import com.aitor.chores.model.users.UserInputObject
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
@@ -18,11 +17,7 @@ class ChoresQueries(db: FirebaseFirestore) {
 
         if (snap.exists() && snap.data != null) {
 
-            val createdBy = snap.get(ChoresReferenceNames.CREATEDBY).toString()
-            val group = snap.get(ChoresReferenceNames.GROUP).toString()
-            val name = snap.get(ChoresReferenceNames.NAME).toString()
-
-            val chore = ChoreObject(snap.id, createdBy, group, name)
+            val chore = choreFromDocumentSnapshot(snap)
 
             return chore
 
@@ -31,9 +26,9 @@ class ChoresQueries(db: FirebaseFirestore) {
         }
     }
 
-    suspend fun getAllChoresForUser (user : UserObject) {
+    suspend fun getAllChoresForUser (user : UserInputObject) {
 
-        val chores = mutableListOf<ChoreObject>()
+        val chores = mutableListOf<ChoreInputObject>()
 
         val byDefault = choresTable.whereEqualTo(ChoresReferenceNames.CREATEDBY, "default")
             .get().await()
@@ -61,8 +56,8 @@ class ChoresQueries(db: FirebaseFirestore) {
         println(chores)
     }
 
-    private fun listRetreiver (snap: List<DocumentSnapshot>) : List<ChoreObject>{
-        val list = mutableListOf<ChoreObject>()
+    private fun listRetreiver (snap: List<DocumentSnapshot>) : List<ChoreInputObject>{
+        val list = mutableListOf<ChoreInputObject>()
         for (doc in snap){
             val added = choreFromDocumentSnapshot(doc)
             list.add(added)
@@ -70,12 +65,13 @@ class ChoresQueries(db: FirebaseFirestore) {
         return list
     }
 
-    private fun choreFromDocumentSnapshot(doc : DocumentSnapshot) : ChoreObject{
+    private fun choreFromDocumentSnapshot(doc : DocumentSnapshot) : ChoreInputObject{
         val name = doc.get(ChoresReferenceNames.NAME).toString()
         val createdBy = doc.get(ChoresReferenceNames.CREATEDBY).toString()
         val group = doc.get(ChoresReferenceNames.GROUP).toString()
+        val obj = ChoreInputObject(doc.id,createdBy,group,name)
 
-        return ChoreObject(doc.id,createdBy,group,name)
+        return obj
     }
 
 }

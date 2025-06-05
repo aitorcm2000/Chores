@@ -24,7 +24,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/logo"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -34,7 +34,16 @@
         app:layout_constraintStart_toStartOf="@id/baseFrame"
         app:layout_constraintTop_toTopOf="@id/baseFrame"
         app:layout_constraintWidth_percent="0.5"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
+        app:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chores"
+        app:layout_constraintEnd_toEndOf="@+id/logo"
+        app:layout_constraintStart_toStartOf="@+id/logo"
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <EditText
         android:id="@+id/username"
@@ -47,7 +56,22 @@
         android:hint="Usuario"
         app:layout_constraintBottom_toTopOf="@id/password"
         app:layout_constraintEnd_toEndOf="@id/baseFrame"
-        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintHeight_percent="0.06"
+        app:layout_constraintStart_toStartOf="@id/baseFrame"
+        app:layout_constraintWidth_percent="0.7" />
+
+    <EditText
+        android:id="@+id/mail"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/plantilla_frame"
+        android:backgroundTint="@color/white"
+        android:gravity="center"
+        android:hint="Correo Electronico"
+        app:layout_constraintBottom_toTopOf="@id/password"
+        app:layout_constraintEnd_toEndOf="@id/baseFrame"
+        app:layout_constraintHeight_percent="0.06"
         app:layout_constraintStart_toStartOf="@id/baseFrame"
         app:layout_constraintWidth_percent="0.7" />
 
@@ -55,26 +79,57 @@
         android:id="@+id/password"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="40dp"
         android:background="@drawable/plantilla_frame"
         android:backgroundTint="@color/white"
         android:gravity="center"
         android:hint="Contraseña"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="@id/baseFrame"
-        app:layout_constraintEnd_toEndOf="@id/baseFrame"
-        app:layout_constraintHeight_percent="0.05"
-        app:layout_constraintStart_toStartOf="@id/baseFrame"
+        app:layout_constraintHeight_percent="0.06"
+        android:minHeight="30dp"
+        android:maxHeight="30dp"
         app:layout_constraintWidth_percent="0.7" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.06"
+        app:layout_constraintWidth_percent="0.4"
+        android:text="Registar" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.06"
+        app:layout_constraintWidth_percent="0.4"
+        android:text="Volver" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flowbuttons"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.1"
+        android:orientation="horizontal"
+        app:constraint_referenced_ids="button,button2"
+        app:layout_constraintStart_toStartOf="@id/baseFrame"
+        app:layout_constraintEnd_toEndOf="@id/baseFrame"
+        app:layout_constraintBottom_toBottomOf="@id/baseFrame"
+        />
 
     <androidx.constraintlayout.helper.widget.Flow
         android:id="@+id/flow"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/baseFrame"
-        app:layout_constraintEnd_toEndOf="@id/baseFrame"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:constraint_referenced_ids="username,mail,password"
+        app:flow_verticalStyle="spread"
+        app:flow_wrapMode="chain"
         app:layout_constraintStart_toStartOf="@id/baseFrame"
-        app:constraint_referenced_ids="username,password" />
+        app:layout_constraintEnd_toEndOf="@id/baseFrame"
+        app:layout_constraintBottom_toTopOf="@id/flowbuttons"
+        app:layout_constraintTop_toBottomOf="@id/textView"
+        />
 
 
     <!--    <androidx.appcompat.widget.Toolbar-->

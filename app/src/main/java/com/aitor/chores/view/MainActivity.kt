@@ -16,9 +16,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aitor.chores.R
 import com.aitor.chores.communication.FirestoreConnection
-import com.aitor.chores.communication.chores.ChoresPUD
-import com.aitor.chores.model.chores.ChoreInputObject
-import com.aitor.chores.model.chores.ChoreOutputObject
 import com.aitor.chores.view.rcv.DatosMenuItem
 import com.aitor.chores.view.rcv.MenuItemAdapter_Main
 import com.aitor.chores.view.rcv.RCV_Deco_List
@@ -52,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        rcv = findViewById(R.id.rcv_1)
+        rcv = findViewById(R.id.baseFrame)
         rcv.addItemDecoration(RCV_Deco_List(20))
         rcv.setLayoutManager(LinearLayoutManager(this))
         val rcv1_adapter = MenuItemAdapter_Main(datos)

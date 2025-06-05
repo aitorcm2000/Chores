@@ -34,7 +34,9 @@
         app:layout_constraintStart_toStartOf="@id/baseFrame"
         app:layout_constraintTop_toTopOf="@id/baseFrame"
         app:layout_constraintWidth_percent="0.5"
-        app:srcCompat="@tools:sample/avatars" />
+        app:srcCompat="@drawable/chores"
+        android:scaleType="centerInside"
+        />
 
     <TextView
         android:id="@+id/textView"

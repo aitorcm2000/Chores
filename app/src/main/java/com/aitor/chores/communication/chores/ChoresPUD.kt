@@ -22,4 +22,5 @@ class ChoresPUD(db: FirebaseFirestore) {
 
         val ref = choresTable.document(chore.id).set(choreOutput).await()
     }
+
 }

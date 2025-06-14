@@ -53,12 +53,15 @@ dependencies {
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.google.firebase.firestore.ktx)
+    implementation(libs.play.services.mlkit.text.recognition)
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation(libs.firebase.dataconnect)
     implementation(libs.kotlinx.coroutines.core)
+
     implementation(libs.kotlinx.serialization.core)
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.firestore.ktx)
@@ -68,4 +71,13 @@ dependencies {
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.material)
+
+//    // Para CameraX
+//    implementation(libs.androidx.camera.camera2)
+//    implementation(libs.androidx.camera.lifecycle)
+//    implementation(libs.androidx.camera.view)
+//
+//// Para ML Kit Text Recognition (usa solo estas dos)
+//    implementation(libs.google.mlkit.text.recognition)
+//    implementation(libs.google.mlkit.text.recognition.latin)
 }

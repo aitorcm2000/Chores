@@ -30,7 +30,7 @@ class ChoresGroupsQueries(val collection : CollectionReference){
             return choreGroups
 
         } else {
-            println("DAMN $snap")
+            println(snap)
             return Any()
         }
     }

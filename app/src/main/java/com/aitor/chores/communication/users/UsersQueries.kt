@@ -23,6 +23,30 @@ class UsersQueries (db: FirebaseFirestore) {
         }
     }
 
+    suspend fun getUserByUsername (username : String)
+    : Any
+    {
+        val snap = usersTable.whereEqualTo(UsersReferenceNames.USERNAME,username).get().await()
+
+        if (!snap.isEmpty && snap.documents.isNotEmpty()) {
+            return userFromSnapshot(snap.documents[0])
+        } else {
+            return Any()
+        }
+    }
+
+    suspend fun getUserByMail (mail : String)
+    : Any
+    {
+        val snap = usersTable.whereEqualTo(UsersReferenceNames.MAIL, mail).get().await()
+
+        if (!snap.isEmpty && snap.documents.isNotEmpty()) {
+            return userFromSnapshot(snap.documents[0])
+        } else {
+            return Any()
+        }
+    }
+
     private fun userFromSnapshot (snap : DocumentSnapshot) : UserInputObject{
 
         val username = snap.get(UsersReferenceNames.USERNAME).toString()

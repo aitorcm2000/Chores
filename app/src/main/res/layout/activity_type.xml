@@ -6,22 +6,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient1"
-    tools:context=".view.TareasActivity">
+    tools:context=".view.activities.TareasActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcv_2"
+    <View
+        android:id="@+id/base_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="70dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:alpha="0.55"
         android:background="@drawable/plantilla_frame"
         android:backgroundTint="@color/white"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"/>
+<!--        app:layout_constraintTop_toBottomOf="@+id/toolbar" -->
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

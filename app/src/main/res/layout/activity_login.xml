@@ -6,10 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient2"
-    tools:context=".view.LoginActivity">
+    tools:context=".view.activities.LoginActivity">
 
     <View
-        android:id="@+id/baseFrame"
+        android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="20dp"
@@ -29,36 +29,26 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="@id/baseFrame"
-        app:layout_constraintHeight_percent="0.25"
-        app:layout_constraintStart_toStartOf="@id/baseFrame"
-        app:layout_constraintTop_toTopOf="@id/baseFrame"
-        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintEnd_toEndOf="@id/recycler"
+        app:layout_constraintHeight_percent="0.36"
+        app:layout_constraintStart_toStartOf="@id/recycler"
+        app:layout_constraintTop_toTopOf="@id/recycler"
+        app:layout_constraintWidth_percent="0.7"
         app:srcCompat="@drawable/chores"
         />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Chores"
-        app:layout_constraintEnd_toEndOf="@+id/logo"
-        app:layout_constraintStart_toStartOf="@+id/logo"
-        app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <EditText
         android:id="@+id/username"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="40dp"
         android:background="@drawable/plantilla_frame"
         android:backgroundTint="@color/white"
         android:gravity="center"
         android:hint="Usuario o Email"
-
-        app:layout_constraintEnd_toEndOf="@id/baseFrame"
+        android:text="prueba"
+        app:layout_constraintEnd_toEndOf="@id/recycler"
         app:layout_constraintHeight_percent="0.06"
-        app:layout_constraintStart_toStartOf="@id/baseFrame"
+        app:layout_constraintStart_toStartOf="@id/recycler"
         app:layout_constraintWidth_percent="0.7" />
 
 <!--    <EditText-->
@@ -85,13 +75,23 @@
         android:gravity="center"
         android:hint="Contraseña"
         android:inputType="textPassword"
-        app:layout_constraintHeight_percent="0.06"
-        android:minHeight="30dp"
         android:maxHeight="30dp"
+        android:minHeight="30dp"
+        android:text="prueba"
+        app:layout_constraintHeight_percent="0.06"
         app:layout_constraintWidth_percent="0.7" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/loginbutton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.06"
+        app:layout_constraintWidth_percent="0.4"
+        android:text="Login"
+        />
+
+    <Button
+        android:id="@+id/registerbutton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintHeight_percent="0.06"
@@ -99,37 +99,50 @@
         android:text="Registar" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/recoverybutton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintHeight_percent="0.06"
         app:layout_constraintWidth_percent="0.4"
         android:text="Recuperar" />
 
+    <View
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintWidth_percent="0.2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:foreground="@drawable/loading_ring"
+        android:visibility="invisible"
+        />
+
     <androidx.constraintlayout.helper.widget.Flow
         android:id="@+id/flowbuttons"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.1"
         android:orientation="horizontal"
-        app:constraint_referenced_ids="button,button2"
-        app:layout_constraintStart_toStartOf="@id/baseFrame"
-        app:layout_constraintEnd_toEndOf="@id/baseFrame"
-        app:layout_constraintBottom_toBottomOf="@id/baseFrame"
-        />
+        app:constraint_referenced_ids="registerbutton,recoverybutton"
+        app:layout_constraintBottom_toBottomOf="@id/recycler"
+        app:layout_constraintEnd_toEndOf="@id/recycler"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintStart_toStartOf="@id/recycler" />
 
     <androidx.constraintlayout.helper.widget.Flow
         android:id="@+id/flow"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:constraint_referenced_ids="username,password"
+        app:constraint_referenced_ids="username,password,loginbutton"
         app:flow_verticalStyle="spread"
         app:flow_wrapMode="chain"
-        app:layout_constraintStart_toStartOf="@id/baseFrame"
-        app:layout_constraintEnd_toEndOf="@id/baseFrame"
         app:layout_constraintBottom_toTopOf="@id/flowbuttons"
-        app:layout_constraintTop_toBottomOf="@id/textView"
-        />
+        app:layout_constraintTop_toBottomOf="@id/logo"
+        app:layout_constraintEnd_toEndOf="@id/recycler"
+        app:layout_constraintStart_toStartOf="@id/recycler" >
+    </androidx.constraintlayout.helper.widget.Flow>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

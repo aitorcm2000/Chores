@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Chores</string>
+    <string name="login_error">"Usuario o contraseña incorrectos"</string>
 </resources>

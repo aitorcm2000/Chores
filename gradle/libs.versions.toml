@@ -2,6 +2,7 @@
 activityKtx = "1.10.1"
 agp = "8.6.0"
 firebaseBom = "33.14.0"
+hiltAndroid = "2.56.2"
 kotlin = "1.9.0"
 coreKtx = "1.16.0"
 junit = "4.13.2"
@@ -17,6 +18,8 @@ textRecognition = "16.0.1"
 lifecycleLivedataKtx = "2.9.0"
 fragmentKtx = "1.8.7"
 firebaseFirestoreKtx = "25.1.4"
+playServicesMlkitTextRecognition = "16.3.0"
+recyclerview = "1.4.0"
 
 [libraries]
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityKtx" }
@@ -25,6 +28,7 @@ androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-view
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 firebase-dataconnect = { module = "com.google.firebase:firebase-dataconnect" }
 firebase-firestore-ktx = { module = "com.google.firebase:firebase-firestore-ktx" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -39,6 +43,8 @@ text-recognition = { group = "com.google.mlkit", name = "text-recognition", vers
 androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" }
 androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
 google-firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
+play-services-mlkit-text-recognition = { group = "com.google.android.gms", name = "play-services-mlkit-text-recognition", version.ref = "playServicesMlkitTextRecognition" }
+androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

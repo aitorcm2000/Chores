@@ -6,7 +6,8 @@ import android.widget.GridLayout
 import androidx.recyclerview.widget.RecyclerView
 
 class RCV_Deco_Colum (
-    private val espacio : Int,
+    private val espacioVertical : Int,
+    private val espacioHorizontal : Int,
     private val columnas: Int,
     private val horientacion: Int = GridLayout.VERTICAL
 ) : RecyclerView.ItemDecoration() {
@@ -21,22 +22,22 @@ class RCV_Deco_Colum (
         with(outRect){
             if(horientacion == GridLayout.VERTICAL){
                 if (parent.getChildAdapterPosition(view) < columnas) {
-                    top = espacio
+                    top = espacioVertical
                 }
                 if (parent.getChildAdapterPosition(view) % columnas == 0) {
-                    left = espacio
+                    left = espacioHorizontal
                 }
             } else {
                 if (parent.getChildAdapterPosition(view) < columnas) {
-                    left = espacio
+                    left = espacioHorizontal
                 }
                 if (parent.getChildAdapterPosition(view) % columnas == 0) {
-                    top = espacio
+                    top = espacioVertical
                 }
             }
 
-            right = espacio
-            bottom = espacio
+            right = espacioHorizontal
+            bottom = espacioVertical
         }
     }
 }

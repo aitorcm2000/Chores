@@ -4,5 +4,6 @@ import android.media.Image
 import android.widget.ImageView
 
 data class DatosMenuItem (
-    val Titulo : String
+    val title : String,
+    val img : Int
 )

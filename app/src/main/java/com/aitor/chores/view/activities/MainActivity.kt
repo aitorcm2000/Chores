@@ -3,15 +3,12 @@ package com.aitor.chores.view.activities
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
-
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.google.firebase.firestore.FirebaseFirestore
-
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aitor.chores.R
@@ -20,6 +17,8 @@ import com.aitor.chores.databinding.ActivityMainBinding
 import com.aitor.chores.view.controllers.mainmenu.MainMenuController
 import com.aitor.chores.view.controllers.mainmenu.MainMenuSetup
 import com.aitor.chores.view.rcv.MenuItemAdapter_Main
+import com.aitor.chores.view.rcv.RCV_Deco_List
+import com.google.firebase.firestore.FirebaseFirestore
 
 class MainActivity : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
@@ -46,6 +45,7 @@ class MainActivity : AppCompatActivity() {
         adapterMain = MenuItemAdapter_Main()
 
         rcv = findViewById(R.id.recycler)
+        rcv.addItemDecoration(RCV_Deco_List(200))
         rcv.layoutManager = LinearLayoutManager(this)
         rcv.adapter = adapterMain
 
@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         setup = MainMenuSetup(this, this, binding, db)
 
 //        rcv = findViewById(R.id.baseFrame)
-//        rcv.addItemDecoration(RCV_Deco_List(20))
+
 //        rcv.setLayoutManager(LinearLayoutManager(this))
 //        val rcv1_adapter = MenuItemAdapter_Main(datos)
 //        rcv.adapter = rcv1_adapter

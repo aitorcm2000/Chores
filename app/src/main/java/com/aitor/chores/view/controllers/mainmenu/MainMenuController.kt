@@ -1,14 +1,10 @@
 package com.aitor.chores.view.controllers.mainmenu
 
-import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.aitor.chores.R
-import com.aitor.chores.databinding.ActivityMainBinding
 import com.aitor.chores.view.rcv.DatosMenuItem
-import com.google.firebase.firestore.FirebaseFirestore
 
 class MainMenuController(
 //    private val activity : AppCompatActivity,

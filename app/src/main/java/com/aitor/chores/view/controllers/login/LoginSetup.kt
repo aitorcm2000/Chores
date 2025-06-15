@@ -2,7 +2,6 @@ package com.aitor.chores.view.controllers.login
 
 import android.content.Context
 import android.view.Gravity
-import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat

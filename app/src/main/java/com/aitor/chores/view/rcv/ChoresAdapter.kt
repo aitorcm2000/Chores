@@ -1,33 +1,28 @@
 package com.aitor.chores.view.rcv
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.aitor.chores.databinding.MiniMenuBinding
-import com.aitor.chores.view.activities.ChoresActivity
+import com.aitor.chores.databinding.ChoreLinearLayoutBinding
 
-class MenuItemAdapter_Mini :
-    ListAdapter<DatosMenuItem, MenuItemAdapter_Mini.ViewHolder>(MenuItemDiffCallback()) {
+class ChoresAdapter :
+    ListAdapter<ChoresItem, ChoresAdapter.ViewHolder>(ChoreItemDiffCallback()) {
 
-    class ViewHolder(private val binding: MiniMenuBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: DatosMenuItem) {
-
-            binding.miniMenuImg.setImageResource(item.img)
-
+    class ViewHolder(private val binding : ChoreLinearLayoutBinding):RecyclerView.ViewHolder(binding.root){
+        fun bind(item: ChoresItem) {
+            binding.usuario.text = item.completedChore.doneBy
+            binding.fecha.text = item.completedChore.doneWhen.toString()
+            // Puedes agregar un listener para manejar los clicks si es necesario
             binding.root.setOnClickListener {
-                val intent = Intent(binding.root.context, ChoresActivity::class.java)
-                intent.putExtra("choreGroup", item.title)
-                binding.root.context.startActivity(intent)
+
             }
         }
     }
 
     //Por cada elemento nuevo deberia cambiar entre derecha e izquierda
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = MiniMenuBinding.inflate(
+        val binding = ChoreLinearLayoutBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
         val viewHolder = ViewHolder(binding)
@@ -38,5 +33,4 @@ class MenuItemAdapter_Mini :
         val item = getItem(position)
         holder.bind(item)
     }
-
 }

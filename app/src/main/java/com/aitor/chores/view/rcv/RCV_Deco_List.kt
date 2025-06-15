@@ -17,8 +17,8 @@ class RCV_Deco_List (private val espacio : Int) : RecyclerView.ItemDecoration() 
             if(parent.getChildAdapterPosition(view) == 0){
                 top = espacio
             }
-            left = espacio
-            right = espacio
+//            left = espacio
+//            right = espacio
             bottom = espacio
         }
     }

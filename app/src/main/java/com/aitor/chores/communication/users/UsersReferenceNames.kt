@@ -5,7 +5,7 @@ object UsersReferenceNames {
     const val PASSWORD = "password"
     const val MAIL = "mail"
     const val GROUPS = "groups"
-    const val CHORES_COMPLETED = "chores_completed"
+    const val CHORES_COMPLETED = "choresCompleted"
     const val CHORE = "chore"
     const val DONEWHEN = "doneWhen"
     const val GROUPID = "groupID"

@@ -1,5 +1,6 @@
 package com.aitor.chores.communication.users
 
+import com.aitor.chores.communication.FirestoreConnection
 import com.aitor.chores.communication.TableReferenceNames
 import com.aitor.chores.model.users.UserInputObject
 import com.google.firebase.firestore.CollectionReference
@@ -7,43 +8,43 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
-class UsersQueries (db: FirebaseFirestore) {
+class UsersQueries () {
 
-    private val usersTable : CollectionReference = db.collection(TableReferenceNames.USERS)
+    private val usersTable : CollectionReference = FirestoreConnection.db!!.collection(TableReferenceNames.USERS)
 
     suspend fun getUserById (id : String)
-    : Any
+    : UserInputObject
     {
         val snap = usersTable.document(id).get().await()
 
         if (snap.exists() && snap.data != null) {
             return userFromSnapshot(snap)
         } else {
-            return Any()
+            return UserInputObject()
         }
     }
 
     suspend fun getUserByUsername (username : String)
-    : Any
+    : UserInputObject
     {
         val snap = usersTable.whereEqualTo(UsersReferenceNames.USERNAME,username).get().await()
 
         if (!snap.isEmpty && snap.documents.isNotEmpty()) {
             return userFromSnapshot(snap.documents[0])
         } else {
-            return Any()
+            return UserInputObject()
         }
     }
 
     suspend fun getUserByMail (mail : String)
-    : Any
+    : UserInputObject
     {
         val snap = usersTable.whereEqualTo(UsersReferenceNames.MAIL, mail).get().await()
 
         if (!snap.isEmpty && snap.documents.isNotEmpty()) {
             return userFromSnapshot(snap.documents[0])
         } else {
-            return Any()
+            return UserInputObject()
         }
     }
 

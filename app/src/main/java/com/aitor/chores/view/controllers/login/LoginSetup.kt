@@ -19,10 +19,9 @@ class LoginSetup (
     private val activity : AppCompatActivity,
     private val context : Context,
     private val binding: ActivityLoginBinding,
-    private val db : FirebaseFirestore
 ) {
 
-    val controller = LoginController(activity, context, binding, db)
+    val controller = LoginController(activity, context, binding)
 
     fun basicSetup (){
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
@@ -41,10 +40,11 @@ class LoginSetup (
                 binding.view.startAnimation(anim)
 
                 if (controller.userValidation()){
-                    binding.view.animation.cancel()
+                    binding.view.clearAnimation()
+
                     controller.gotoMain()
                 } else {
-                    binding.view.animation.cancel()
+                    binding.view.clearAnimation()
                     SnackBarFactory().createSnackBar(
                         binding.root,
                         activity.getString(R.string.login_error),

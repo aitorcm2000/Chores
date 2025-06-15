@@ -8,13 +8,13 @@ import com.aitor.chores.databinding.ActivityLoginBinding
 import com.aitor.chores.model.users.UserInputObject
 import com.aitor.chores.view.activities.MainActivity
 import com.aitor.chores.view.activities.RegisterActivity
+import com.aitor.chores.view.controllers.CommonData
 import com.google.firebase.firestore.FirebaseFirestore
 
 class LoginController(
     private val activity: AppCompatActivity,
     private val context: Context,
-    private val binding: ActivityLoginBinding,
-    private val db: FirebaseFirestore
+    private val binding: ActivityLoginBinding
 ) {
 
     suspend fun userValidation(): Boolean {
@@ -27,7 +27,7 @@ class LoginController(
 
         if (isItMailOrUsername(name)) {
 
-            val response = UsersQueries(db).getUserByMail(name)
+            val response = UsersQueries().getUserByMail(name)
 
             if (response is UserInputObject) {
                 user = response
@@ -37,7 +37,7 @@ class LoginController(
 
         } else {
 
-            val response = UsersQueries(db).getUserByUsername(name)
+            val response = UsersQueries().getUserByUsername(name)
 
             if (response is UserInputObject) {
                 user = response
@@ -49,11 +49,13 @@ class LoginController(
 
         if (user != UserInputObject()) {
             val bool = password == user.password
+            if(bool) CommonData.user = user
             return bool
         }
 
         return false
     }
+
 
     fun gotoRegister() {
         val intent = Intent(context, RegisterActivity::class.java)

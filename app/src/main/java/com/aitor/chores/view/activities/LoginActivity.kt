@@ -13,7 +13,6 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var setup: LoginSetup
-    private lateinit var db : FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,8 +22,20 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        db = FirestoreConnection().startConnection()
-        setup = LoginSetup(this, this, binding, db)
+        if (intent.extras != null) {
+            val username = intent.extras!!.getString("username")
+            val password = intent.extras!!.getString("password")
+
+            if (username != null && password != null) {
+                binding.username.setText(username)
+                binding.password.setText(password)
+            }
+        } else {
+            binding.username.setText("")
+            binding.password.setText("")
+        }
+
+        setup = LoginSetup(this, this, binding)
         setup.basicSetup()
         setup.buttonSetup()
 

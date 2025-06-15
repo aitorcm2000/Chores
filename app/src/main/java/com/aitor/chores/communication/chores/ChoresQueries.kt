@@ -1,5 +1,6 @@
 package com.aitor.chores.communication.chores
 
+import com.aitor.chores.communication.FirestoreConnection
 import com.aitor.chores.communication.TableReferenceNames
 import com.aitor.chores.model.chores.ChoreInputObject
 import com.aitor.chores.model.users.UserInputObject
@@ -8,9 +9,10 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
-class ChoresQueries(db: FirebaseFirestore) {
+class ChoresQueries() {
 
-    private val choresTable : CollectionReference = db.collection(TableReferenceNames.CHORES)
+    private val choresTable : CollectionReference =
+        FirestoreConnection.db!!.collection(TableReferenceNames.CHORES)
 
     suspend fun getChoreById (id : String) : Any {
         val snap = choresTable.document(id).get().await()
@@ -26,7 +28,7 @@ class ChoresQueries(db: FirebaseFirestore) {
         }
     }
 
-    suspend fun getAllChoresForUser (user : UserInputObject) {
+    suspend fun getAllChoresForUser (user : UserInputObject): MutableList<ChoreInputObject> {
 
         val chores = mutableListOf<ChoreInputObject>()
 
@@ -53,7 +55,7 @@ class ChoresQueries(db: FirebaseFirestore) {
             chores.addAll(listRetreiver(byUser.documents))
         }
 
-        println(chores)
+        return chores
     }
 
     private fun listRetreiver (snap: List<DocumentSnapshot>) : List<ChoreInputObject>{

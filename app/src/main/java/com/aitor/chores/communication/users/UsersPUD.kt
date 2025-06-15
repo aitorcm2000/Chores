@@ -1,5 +1,6 @@
 package com.aitor.chores.communication.users
 
+import com.aitor.chores.communication.FirestoreConnection
 import com.aitor.chores.communication.TableReferenceNames
 import com.aitor.chores.model.users.UserInputObject
 import com.aitor.chores.model.users.UserOutputObject
@@ -7,9 +8,9 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
-class UsersPUD(db: FirebaseFirestore) {
+class UsersPUD() {
 
-    private val userTable : CollectionReference = db.collection(TableReferenceNames.USERS)
+    private val userTable : CollectionReference = FirestoreConnection.db!!.collection(TableReferenceNames.USERS)
 
     suspend fun addUser (user : UserOutputObject){
 

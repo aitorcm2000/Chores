@@ -66,8 +66,7 @@
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="@id/base_frame"
             app:layout_constraintStart_toEndOf="@+id/view2"
-            app:layout_constraintTop_toTopOf="@+id/view2"
-            android:onClick="@{() -> viewModel.add}"/>
+            app:layout_constraintTop_toTopOf="@+id/view2" />
 
         <TextView
             android:id="@+id/textView2"

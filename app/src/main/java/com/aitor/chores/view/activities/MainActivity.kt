@@ -21,7 +21,7 @@ import com.aitor.chores.view.rcv.RCV_Deco_List
 import com.google.firebase.firestore.FirebaseFirestore
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var db: FirebaseFirestore
+
     private lateinit var setup: MainMenuSetup
     private lateinit var binding: ActivityMainBinding
     private lateinit var rcv: RecyclerView
@@ -54,26 +54,10 @@ class MainActivity : AppCompatActivity() {
             adapterMain.submitList(datos)
         }
 
-        db = FirestoreConnection().startConnection()
-        setup = MainMenuSetup(this, this, binding, db)
+        setup = MainMenuSetup(this, this, binding)
 
-//        rcv = findViewById(R.id.baseFrame)
-
-//        rcv.setLayoutManager(LinearLayoutManager(this))
-//        val rcv1_adapter = MenuItemAdapter_Main(datos)
-//        rcv.adapter = rcv1_adapter
 
         init_Toolbar()
-
-
-//        setup.setMenuOnClick(rcv.findViewHolderForItemId(0).itemView)
-
-//        var boton = findViewById<Button>(R.id.button1)
-//
-//        boton.setOnClickListener(){
-//            val intent = Intent(this,TareasActivity::class.java)
-//            startActivity(intent)
-//        }
 
     }
 

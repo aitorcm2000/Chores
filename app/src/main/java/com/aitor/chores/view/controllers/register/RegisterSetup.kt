@@ -9,7 +9,6 @@ class RegisterSetup (
     private val activity : AppCompatActivity,
     private val context : Context,
     private val binding: ActivityRegisterBinding,
-    private val db : FirebaseFirestore
 )  {
 
 

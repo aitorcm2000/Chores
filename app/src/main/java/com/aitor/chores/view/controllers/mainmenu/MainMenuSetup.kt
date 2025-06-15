@@ -9,7 +9,6 @@ class MainMenuSetup(
     private val activity : AppCompatActivity,
     private val context : Context,
     private val binding: ActivityMainBinding,
-    private val db : FirebaseFirestore
 ){
 
 //    fun setMenuOnClick(view: View) {

@@ -8,5 +8,6 @@ object UsersReferenceNames {
     const val CHORES_COMPLETED = "choresCompleted"
     const val CHORE = "chore"
     const val DONEWHEN = "doneWhen"
+    const val DONEBY = "doneBy"
     const val GROUPID = "groupID"
 }

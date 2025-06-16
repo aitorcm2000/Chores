@@ -15,6 +15,7 @@ import com.aitor.chores.view.rcv.MenuItemAdapter_Mini
 import com.aitor.chores.view.rcv.RCV_Deco_Colum
 
 class TareasActivity : AppCompatActivity() {
+
     private lateinit var rcv: RecyclerView
     private lateinit var binding : ActivityTypeBinding
     private val viewModel : TareasController by viewModels()

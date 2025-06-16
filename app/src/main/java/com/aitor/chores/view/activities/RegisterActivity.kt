@@ -12,7 +12,6 @@ import com.aitor.chores.communication.FirestoreConnection
 import com.aitor.chores.databinding.ActivityRegisterBinding
 import com.aitor.chores.model.users.UserOutputObject
 import com.aitor.chores.view.controllers.register.RegisterController
-import com.aitor.chores.view.controllers.register.RegisterSetup
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -22,7 +21,6 @@ class RegisterActivity : AppCompatActivity() {
 
     private val viewModel : RegisterController by viewModels()
     private lateinit var binding: ActivityRegisterBinding
-    private lateinit var setup: RegisterSetup
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +57,6 @@ class RegisterActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
-        setup = RegisterSetup(this, this, binding)
 
     }
 }

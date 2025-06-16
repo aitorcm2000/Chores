@@ -5,27 +5,29 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.aitor.chores.databinding.ChoreLinearLayoutBinding
+import com.google.firebase.Timestamp
 
-class ChoresAdapter :
-    ListAdapter<ChoresItem, ChoresAdapter.ViewHolder>(ChoreItemDiffCallback()) {
+class ChoreListAdapter
+    : ListAdapter<ChoreListAdapter.ChoreListItem, ChoreListAdapter.ViewHolder>(ChoreListAdapterDiffCallback()) {
 
-    class ViewHolder(private val binding : ChoreLinearLayoutBinding):RecyclerView.ViewHolder(binding.root){
-        fun bind(item: ChoresItem) {
-            binding.titulo.text = item.completedChore.doneBy
-            binding.fecha.text = item.completedChore.doneWhen.toString()
-            // Puedes agregar un listener para manejar los clicks si es necesario
-            binding.root.setOnClickListener {
+    data class ChoreListItem(
+        val titulo: String,
+        val fecha: Timestamp
+        )
 
-            }
+    class ViewHolder(private val binding: ChoreLinearLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(choreListItem: ChoreListItem) {
+            binding.titulo.text = choreListItem.titulo
+            binding.fecha.text = choreListItem.fecha.toDate().toString()
         }
     }
 
-    //Por cada elemento nuevo deberia cambiar entre derecha e izquierda
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ChoreLinearLayoutBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
         val viewHolder = ViewHolder(binding)
+
         return viewHolder
     }
 

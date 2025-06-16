@@ -1,15 +1,20 @@
 package com.aitor.chores.communication.chores
 
+import com.aitor.chores.communication.FirestoreConnection
+import com.aitor.chores.communication.TableReferenceNames
 import com.aitor.chores.model.chores.ChoreGroupObject
 import com.google.firebase.firestore.CollectionReference
 import kotlinx.coroutines.tasks.await
 
-class ChoresGroupsQueries(val collection : CollectionReference){
+class ChoresGroupsQueries(){
 
-    suspend fun getAllChoreGroups () : Any{
+    private val choreGroupTable: CollectionReference =
+        FirestoreConnection.db!!.collection(TableReferenceNames.CHORES_GROUP)
+
+    suspend fun getAllChoreGroups () :  List<ChoreGroupObject>{
 
         val choreGroups :  List<ChoreGroupObject>
-        val snap = collection.get().await()
+        val snap = choreGroupTable.get().await()
 
         if (!snap.documents.isEmpty()) {
 
@@ -30,8 +35,7 @@ class ChoresGroupsQueries(val collection : CollectionReference){
             return choreGroups
 
         } else {
-            println(snap)
-            return Any()
+            return listOf<ChoreGroupObject>()
         }
     }
 }

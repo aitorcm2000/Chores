@@ -16,14 +16,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Chores"
+        android:theme="@style/Base.Theme.Chores"
         tools:targetApi="31">
-        <activity
-            android:name=".view.activities.ChoreListActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.activities.ChoresActivity"
-            android:exported="false" />
+
         <activity
             android:name=".view.activities.LoginActivity"
             android:exported="true">
@@ -42,6 +37,13 @@
         <activity
             android:name=".view.activities.MainActivity"
             android:exported="false" />
+        <activity
+            android:name=".view.activities.ChoreListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activities.ChoresActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

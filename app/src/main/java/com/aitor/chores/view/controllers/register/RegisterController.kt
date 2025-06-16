@@ -3,12 +3,8 @@ package com.aitor.chores.view.controllers.register
 import androidx.lifecycle.ViewModel
 import com.aitor.chores.communication.users.UsersPUD
 import com.aitor.chores.communication.users.UsersQueries
-import com.aitor.chores.model.users.UserInputObject
 import com.aitor.chores.model.users.UserOutputObject
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
+
 
 class RegisterController : ViewModel() {
 

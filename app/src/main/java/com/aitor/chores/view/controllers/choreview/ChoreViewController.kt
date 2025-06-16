@@ -1,21 +1,14 @@
-package com.aitor.chores.view.controllers.chores
+package com.aitor.chores.view.controllers.choreview
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.findViewTreeLifecycleOwner
-import androidx.lifecycle.viewModelScope
 import com.aitor.chores.communication.FirestoreConnection
 import com.aitor.chores.communication.TableReferenceNames
-import com.aitor.chores.communication.chores.ChoresQueries
-import com.aitor.chores.model.chores.ChoreInputObject
-import com.aitor.chores.model.chores.CompletedChoreObject
-import com.aitor.chores.view.components.ui.SnackBarFactory
 import com.aitor.chores.view.components.utils.Event
 import com.aitor.chores.view.rcv.ChoresItem
-import com.google.firebase.firestore.FirebaseFirestore
 
-class ChoresController : ViewModel() {
+class ChoreViewController : ViewModel() {
 
     // Accede a la instancia de Firestore a través del objeto Singleton
     private val tablas = FirestoreConnection.db?.collection(TableReferenceNames.CHORES)

@@ -15,14 +15,12 @@ import com.aitor.chores.R
 import com.aitor.chores.communication.FirestoreConnection
 import com.aitor.chores.databinding.ActivityMainBinding
 import com.aitor.chores.view.controllers.mainmenu.MainMenuController
-import com.aitor.chores.view.controllers.mainmenu.MainMenuSetup
 import com.aitor.chores.view.rcv.MenuItemAdapter_Main
 import com.aitor.chores.view.rcv.RCV_Deco_List
 import com.google.firebase.firestore.FirebaseFirestore
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var setup: MainMenuSetup
     private lateinit var binding: ActivityMainBinding
     private lateinit var rcv: RecyclerView
     private lateinit var adapterMain: MenuItemAdapter_Main
@@ -53,8 +51,6 @@ class MainActivity : AppCompatActivity() {
         viewModel.menuitems.observe(this) { datos ->
             adapterMain.submitList(datos)
         }
-
-        setup = MainMenuSetup(this, this, binding)
 
 
         init_Toolbar()

@@ -7,15 +7,12 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.aitor.chores.R
 import com.aitor.chores.databinding.ActivityChoresBinding
 import com.aitor.chores.view.components.ui.SnackBarFactory
-import com.aitor.chores.view.controllers.chores.ChoresController
+import com.aitor.chores.view.controllers.choreview.ChoreViewController
 import com.aitor.chores.view.rcv.ChoresAdapter
-import com.aitor.chores.view.rcv.RCV_Deco_Colum
 import com.aitor.chores.view.rcv.RCV_Deco_List
 import com.google.android.material.snackbar.Snackbar
 
@@ -23,7 +20,7 @@ class ChoresActivity : AppCompatActivity() {
 
     private lateinit var rcv: RecyclerView
     private lateinit var binding: ActivityChoresBinding
-    private val viewModel: ChoresController by viewModels() // Ahora esto debería funcionar sin el factory
+    private val viewModel: ChoreViewController by viewModels() // Ahora esto debería funcionar sin el factory
     private lateinit var adapter: ChoresAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,7 +67,6 @@ class ChoresActivity : AppCompatActivity() {
                 SnackBarFactory()
                     .createSnackBar(binding.root, message, Snackbar.LENGTH_LONG, Gravity.CENTER)
                     .show()
-
             }
         }
     }

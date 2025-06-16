@@ -1,5 +1,6 @@
 package com.aitor.chores.communication.chores
 
+import com.aitor.chores.communication.FirestoreConnection
 import com.aitor.chores.communication.TableReferenceNames
 import com.aitor.chores.model.chores.ChoreInputObject
 import com.aitor.chores.model.chores.ChoreOutputObject
@@ -7,9 +8,10 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
-class ChoresPUD(db: FirebaseFirestore) {
+class ChoresPUD() {
 
-    private val choresTable : CollectionReference = db.collection(TableReferenceNames.CHORES)
+    private val choresTable : CollectionReference =
+        FirestoreConnection.db!!.collection(TableReferenceNames.CHORES)
 
     suspend fun addChore (chore : ChoreOutputObject){
 

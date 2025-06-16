@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.aitor.chores.databinding.MiniMenuBinding
+import com.aitor.chores.view.activities.ChoreListActivity
 import com.aitor.chores.view.activities.ChoresActivity
 
 class MenuItemAdapter_Mini :
@@ -18,7 +19,7 @@ class MenuItemAdapter_Mini :
             binding.miniMenuImg.setImageResource(item.img)
 
             binding.root.setOnClickListener {
-                val intent = Intent(binding.root.context, ChoresActivity::class.java)
+                val intent = Intent(binding.root.context, ChoreListActivity::class.java)
                 intent.putExtra("choreGroup", item.title)
                 binding.root.context.startActivity(intent)
             }

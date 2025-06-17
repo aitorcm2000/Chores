@@ -53,8 +53,8 @@ class UsersQueries () {
         val username = snap.get(UsersReferenceNames.USERNAME).toString()
         val password = snap.get(UsersReferenceNames.PASSWORD).toString()
         val mail = snap.get(UsersReferenceNames.MAIL).toString()
-        val groups = snap.get(UsersReferenceNames.GROUPS) as List<String>
-        val choresCompleted = snap.get(UsersReferenceNames.CHORES_COMPLETED) as List<HashMap<String, Any>>
+        val groups = snap.get(UsersReferenceNames.GROUPS) as MutableList<String>
+        val choresCompleted = snap.get(UsersReferenceNames.CHORES_COMPLETED) as MutableList<HashMap<String, Any>>
 
         return UserInputObject(snap.id,username,password,mail,groups,choresCompleted)
     }

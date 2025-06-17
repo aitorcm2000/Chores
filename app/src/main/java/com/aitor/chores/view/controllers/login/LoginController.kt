@@ -3,6 +3,7 @@ package com.aitor.chores.view.controllers.login
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
+import com.aitor.chores.communication.chores.ChoresQueries
 import com.aitor.chores.communication.users.UsersQueries
 import com.aitor.chores.databinding.ActivityLoginBinding
 import com.aitor.chores.model.users.UserInputObject
@@ -49,7 +50,10 @@ class LoginController(
 
         if (user != UserInputObject()) {
             val bool = password == user.password
-            if(bool) CommonData.user = user
+            if(bool){
+                CommonData.user = user
+                CommonData.userChores = ChoresQueries().getAllChoresForUser(user)
+            }
             return bool
         }
 

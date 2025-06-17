@@ -1,10 +1,12 @@
 package com.aitor.chores.view.rcv
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.aitor.chores.databinding.ChoreLinearLayoutBinding
+import com.aitor.chores.view.activities.ChoresActivity
 import com.google.firebase.Timestamp
 
 class ChoreListAdapter
@@ -19,6 +21,12 @@ class ChoreListAdapter
         fun bind(choreListItem: ChoreListItem) {
             binding.titulo.text = choreListItem.titulo
             binding.fecha.text = choreListItem.fecha.toDate().toString()
+
+            binding.root.setOnClickListener {
+                val intent = Intent(binding.root.context, ChoresActivity::class.java)
+                intent.putExtra("choreName", choreListItem.titulo)
+                binding.root.context.startActivity(intent)
+            }
         }
     }
 

@@ -44,7 +44,7 @@ class ChoreListActivity : AppCompatActivity() {
 
         if (id!= null) {
             choreId = id
-            viewModel.setChoreId(choreId)
+            viewModel.setChoreGroupId(choreId)
         }
 
         adapter = ChoreListAdapter()
@@ -82,6 +82,7 @@ class ChoreListActivity : AppCompatActivity() {
             )
 
             viewModel.buttonClicked(chore)
+            viewModel.loadChoreList()
         }
 
         builder.setNegativeButton("No") { dialog: DialogInterface, which: Int ->
@@ -89,12 +90,6 @@ class ChoreListActivity : AppCompatActivity() {
             Toast.makeText(this, "Acción cancelada.", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }
-
-        builder.setNeutralButton("Más tarde") { dialog: DialogInterface, which: Int ->
-            Toast.makeText(this, "Acción pospuesta.", Toast.LENGTH_SHORT).show()
-            dialog.dismiss()
-        }
-
 
         builder.setCancelable(false)
 

@@ -12,7 +12,7 @@ class ChoresAdapter :
     class ViewHolder(private val binding : ChoreLinearLayoutBinding):RecyclerView.ViewHolder(binding.root){
         fun bind(item: ChoresItem) {
             binding.titulo.text = item.completedChore.doneBy
-            binding.fecha.text = item.completedChore.doneWhen.toString()
+            binding.fecha.text = item.completedChore.doneWhen.toDate().toString()
             // Puedes agregar un listener para manejar los clicks si es necesario
             binding.root.setOnClickListener {
 

@@ -38,6 +38,12 @@ class ChoresActivity : AppCompatActivity() {
             insets
         }
 
+        val name = intent.getStringExtra("choreName")
+
+        if (name!= null) {
+            viewModel.setChoreName(name)
+        }
+
         adapter = ChoresAdapter()
 
         // Accede al RecyclerView a través del binding, es más seguro y limpio
@@ -47,17 +53,25 @@ class ChoresActivity : AppCompatActivity() {
         rcv.layoutManager = LinearLayoutManager(this)
         rcv.adapter = adapter
 
+
+
+
         // Observar LiveData del ViewModel
         viewModel.menuitems.observe(this) { datos ->
             adapter.submitList(datos)
         }
 
+        viewModel.setChore()
+
+        viewModel.loadList()
         // Configura el listener para los eventos del ViewModel
         viewModelEventsListener()
 
         binding.button.setOnClickListener {
             viewModel.addItem() // Llama a la función del ViewModel que emite el mensaje
         }
+
+
     }
 
     private fun viewModelEventsListener() {

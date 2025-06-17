@@ -7,6 +7,7 @@ import com.aitor.chores.communication.chores.ChoresPUD
 import com.aitor.chores.model.chores.ChoreOutputObject
 import com.aitor.chores.view.controllers.CommonData
 import com.aitor.chores.view.rcv.ChoreListAdapter
+import com.google.firebase.Timestamp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,24 +23,61 @@ class ChoreListController : ViewModel(){
     private val _text = MutableLiveData<String>()
     val text: LiveData<String> = _text
 
+
     init {
+        _choreList.value = emptyList()
 
     }
 
     fun loadChoreList() {
-        val list = CommonData.completedChoresForUser(choreId.value)
-        list.forEach {
+
+        val list = CommonData.completedChoresForUser(_choreId.value)
+
+        if (list.isEmpty()) {
+            val chore_List = CommonData.userChores
+            if (chore_List.isEmpty()) {
+                _choreList.value = emptyList()
+                return
+            } else {
+                chore_List.forEach { listItem ->
+                    if (listItem.group == _choreId.value) {
+                        val item = ChoreListAdapter.ChoreListItem(
+                            listItem.name,
+                            Timestamp.now()
+                        )
+                        _choreList.value = _choreList.value?.plus(item)
+                    }
+                }
+            }
+        }
+        list.forEach { listItem ->
             val item = ChoreListAdapter.ChoreListItem(
-                it.chore.name,
-                it.doneWhen
+                listItem.chore.name,
+                listItem.doneWhen
             )
+
+            val lista = _choreList.value.filter {
+                listItem.chore.name == it.titulo
+            }
+            lista.forEach {
+                if (it.titulo != listItem.chore.name) {
+                    _choreList.value = listOf(item)
+                }
+            }
+
             _choreList.value = _choreList.value?.plus(item)
         }
+
+    }
+
+    fun setChoreGroupId(id: String) {
+        _choreId.value = id
+        CommonData.lastGroupId = _choreId.value.toString()
+        loadChoreList()
     }
 
     fun setChoreId(id: String) {
-        _choreId.value = id
-        loadChoreList()
+        CommonData.lastChoreId = id
     }
 
     fun setText(text: String) {

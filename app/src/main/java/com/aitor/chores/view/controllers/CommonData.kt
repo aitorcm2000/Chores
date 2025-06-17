@@ -1,6 +1,7 @@
 package com.aitor.chores.view.controllers
 
 import com.aitor.chores.communication.chores.ChoresQueries
+import com.aitor.chores.communication.chores.ChoresReferenceNames
 import com.aitor.chores.communication.users.UsersReferenceNames
 import com.aitor.chores.model.chores.ChoreInputObject
 import com.aitor.chores.model.chores.CompletedChoreObject
@@ -33,10 +34,27 @@ object CommonData {
             field = value
         }
 
-    fun completedChoresForUserByType(choreGroupId : String): List<CompletedChoreObject> {
+    var lastChoreId = ""
+        get() {
+            return field
+        }
+        set(value) {
+            field = value
+        }
+
+    var lastGroupId = ""
+        get() {
+            return field
+        }
+        set(value) {
+            field = value
+        }
+
+
+    fun completedChoresForUserByType(choreGroupId: String): List<CompletedChoreObject> {
         var result = emptyList<CompletedChoreObject>()
 
-        if (groups.isEmpty()){
+        if (groups.isEmpty()) {
             result = completedChoresForUser(choreGroupId)
         } else {
             completedChoresForUserByGroup(choreGroupId)
@@ -45,30 +63,42 @@ object CommonData {
         return result
     }
 
-    fun completedChoresForUser(choreGroupId : String): List<CompletedChoreObject> {
+    fun completedChoresForUser(choreGroupId: String): List<CompletedChoreObject> {
         val chores = choresForUserByType(choreGroupId)
         val result = mutableListOf<CompletedChoreObject>()
         val completed = user.choresCompleted
 
-        for (chore in completed) {
-            if (chore.get(UsersReferenceNames.GROUPID) == choreGroupId) {
-                val filteredChore = chores.filter { it.id == chore.get(UsersReferenceNames.CHORE) }
-                val resultingchore = filteredChore.first()
+        if (completed.isEmpty()) {
+            return result
+        }
 
-                val resultCompleted = CompletedChoreObject (
-                    resultingchore,
-                    chore.get(UsersReferenceNames.DONEWHEN) as Timestamp,
-                    user.id
-                )
+        for (chore in chores) {
+            if (chore.group == choreGroupId) {
+                for (completedChore in completed) {
+                    val filteredChore =
+                        chores.filter { it.id == completedChore.get(ChoresReferenceNames.CHORES) }
 
-                result.add(resultCompleted)
+                    if (filteredChore.isNotEmpty()){
+                        val resultingchore = filteredChore.first()
+
+                        val resultCompleted = CompletedChoreObject(
+                            resultingchore,
+                            completedChore.get(UsersReferenceNames.DONEWHEN) as Timestamp,
+                            user.id
+                        )
+
+                        result.add(resultCompleted)
+                    }
+                }
             }
         }
+
 
         return result
     }
 
-    fun completedChoresForUserByGroup(choreGroupId : String): List<CompletedChoreObject> {
+
+    fun completedChoresForUserByGroup(choreGroupId: String): List<CompletedChoreObject> {
         val chores = choresForUserByType(choreGroupId)
         val result = mutableListOf<CompletedChoreObject>()
 
@@ -78,10 +108,11 @@ object CommonData {
 
             for (chore in completed) {
                 if (chore.get(UsersReferenceNames.GROUPID) == choreGroupId) {
-                    val filteredChore = chores.filter { it.id == chore.get(UsersReferenceNames.CHORE) }
+                    val filteredChore =
+                        chores.filter { it.id == chore.get(UsersReferenceNames.CHORE) }
                     val resultingchore = filteredChore.first()
 
-                    val resultCompleted = CompletedChoreObject (
+                    val resultCompleted = CompletedChoreObject(
                         resultingchore,
                         chore.get(UsersReferenceNames.DONEWHEN) as Timestamp,
                         chore.get(UsersReferenceNames.DONEBY) as String

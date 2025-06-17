@@ -7,7 +7,7 @@ class UserInputObject{
     val password :String
     val email :String
     val groups :List<String>
-    val choresCompleted :List<HashMap<String, Any>>
+    val choresCompleted :MutableList<HashMap<String, Any>>
 
     constructor() {
         this.id = ""
@@ -15,7 +15,7 @@ class UserInputObject{
         this.password = ""
         this.email = ""
         this.groups = emptyList()
-        this.choresCompleted = emptyList()
+        this.choresCompleted = mutableListOf()
     }
 
     constructor(
@@ -24,7 +24,7 @@ class UserInputObject{
         password: String,
         email: String,
         groups: List<String>,
-        choresCompleted: List<HashMap<String, Any>>
+        choresCompleted: MutableList<HashMap<String, Any>>
     ) {
         this.id = id
         this.username = username
